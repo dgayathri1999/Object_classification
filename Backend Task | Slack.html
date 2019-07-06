@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script type="text/javascript" src="Backend%20Task%20|%20Slack_files/webpack.js" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"></script><script>window.ts_endpoint_url = "https:\/\/slack.com\/beacon\/timing";(function(e) {
+	var n=Date.now?Date.now():+new Date,r=e.performance||{},t=[],a={},i=function(e,n){for(var r=0,a=t.length,i=[];a>r;r++)t[r][e]==n&&i.push(t[r]);return i},o=function(e,n){for(var r,a=t.length;a--;)r=t[a],r.entryType!=e||void 0!==n&&r.name!=n||t.splice(a,1)};r.now||(r.now=r.webkitNow||r.mozNow||r.msNow||function(){return(Date.now?Date.now():+new Date)-n}),r.mark||(r.mark=r.webkitMark||function(e){var n={name:e,entryType:"mark",startTime:r.now(),duration:0};t.push(n),a[e]=n}),r.measure||(r.measure=r.webkitMeasure||function(e,n,r){n=a[n].startTime,r=a[r].startTime,t.push({name:e,entryType:"measure",startTime:n,duration:r-n})}),r.getEntriesByType||(r.getEntriesByType=r.webkitGetEntriesByType||function(e){return i("entryType",e)}),r.getEntriesByName||(r.getEntriesByName=r.webkitGetEntriesByName||function(e){return i("name",e)}),r.clearMarks||(r.clearMarks=r.webkitClearMarks||function(e){o("mark",e)}),r.clearMeasures||(r.clearMeasures=r.webkitClearMeasures||function(e){o("measure",e)}),e.performance=r,"function"==typeof define&&(define.amd||define.ajs)&&define("performance",[],function(){return r}) // eslint-disable-line
+})(window);</script><script>
+
+(function() {
+	
+	window.TSMark = function(mark_label) {
+		if (!window.performance || !window.performance.mark) return;
+		performance.mark(mark_label);
+	};
+	window.TSMark('start_load');
+
+	
+	window.TSMeasureAndBeacon = function(measure_label, start_mark_label) {
+		if (!window.performance || !window.performance.mark || !window.performance.measure) {
+			return;
+		}
+
+		performance.mark(start_mark_label + '_end');
+
+		try {
+			performance.measure(measure_label, start_mark_label, start_mark_label + '_end');
+			window.TSBeacon(measure_label, performance.getEntriesByName(measure_label)[0].duration);
+		} catch (e) {
+			
+		}
+	};
+
+	
+	if ('sendBeacon' in navigator) {
+		window.TSBeacon = function(label, value) {
+			var endpoint_url = window.ts_endpoint_url || 'https://slack.com/beacon/timing';
+			navigator.sendBeacon(
+				endpoint_url + '?data=' + encodeURIComponent(label + ':' + value),
+				''
+			);
+		};
+	} else {
+		window.TSBeacon = function(label, value) {
+			var endpoint_url = window.ts_endpoint_url || 'https://slack.com/beacon/timing';
+			new Image().src = endpoint_url + '?data=' + encodeURIComponent(label + ':' + value);
+		};
+	}
+})();
+</script><script>window.TSMark('step_load');</script><noscript><meta http-equiv="refresh" content="0; URL=/T029A47LY-FHZ41UE49-c5b47fe7ee?nojsmode=1"></noscript><script type="text/javascript">var safe_hosts = ['app.optimizely.com'];
+
+if (self !== top && safe_hosts.indexOf(top.location.host) === -1) {
+	window.document.write(
+		'\u003Cstyle>body * {display:none !important;}\u003C/style>\u003Ca href="#" onclick=' +
+			'"top.location.href=window.location.href" style="display:block !important;padding:10px">Go to Slack.com\u003C/a>'
+	);
+}
+
+(function() {
+	var timer;
+	if (self !== top && safe_hosts.indexOf(top.location.host) === -1) {
+		timer = window.setInterval(function() {
+			if (window) {
+				try {
+					var pageEl = document.getElementById('page');
+					var clientEl = document.getElementById('client-ui');
+					var sectionEls = document.querySelectorAll('nav, header, section');
+
+					pageEl.parentNode.removeChild(pageEl);
+					clientEl.parentNode.removeChild(clientEl);
+					for (var i = 0; i < sectionEls.length; i++) {
+						sectionEls[i].parentNode.removeChild(sectionEls[i]);
+					}
+					window.TS = null;
+					window.TD = null;
+					window.clearInterval(timer);
+				} catch (e) {}	
+			}
+		}, 200);
+	}
+})();</script><script type="text/javascript">try {
+	if (window.location.hash && !window.location.hash.match(/^(#?[a-zA-Z0-9_]*)$/)) {
+		window.location.hash = '';
+	}
+} catch (e) {}
+</script><script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(e) {
+	var gtmDataLayer = window.dataLayer || [];
+	var gtmTags = document.querySelectorAll('*[data-gtm-click]');
+	var gtmClickHandler = function(c) {
+		var gtm_events = this.getAttribute('data-gtm-click');
+		if (!gtm_events) return;
+		var gtm_events_arr = gtm_events.split(",");
+		for(var e=0; e < gtm_events_arr.length; e++) {
+			var ev = gtm_events_arr[e].trim();
+			gtmDataLayer.push({ 'event': ev });
+		}
+	};
+	for(var g=0; g < gtmTags.length; g++){
+		var elem = gtmTags[g];
+		elem.addEventListener('click', gtmClickHandler);
+	}
+});
+</script><script type="text/javascript">
+(function(e,c,b,f,d,g,a){e.SlackBeaconObject=d;
+e[d]=e[d]||function(){(e[d].q=e[d].q||[]).push([1*new Date(),arguments])};
+e[d].l=1*new Date();g=c.createElement(b);a=c.getElementsByTagName(b)[0];
+g.async=1;g.src=f;a.parentNode.insertBefore(g,a)
+})(window,document,"script","https://a.slack-edge.com/bv1-6-8cacda2/slack_beacon.bc058f2eca7b7d633d5a.min.js","sb");
+window.sb('set', 'token', '3307f436963e02d4f9eb85ce5159744c');
+window.sb('track', 'pageview');
+</script><meta name="referrer" content="no-referrer"><meta name="superfish" content="nofish"><script type="text/javascript">var TS_last_log_date = null;
+var TSMakeLogDate = function() {
+	var date = new Date();
+
+	var y = date.getFullYear();
+	var mo = date.getMonth()+1;
+	var d = date.getDate();
+
+	var time = {
+	  h: date.getHours(),
+	  mi: date.getMinutes(),
+	  s: date.getSeconds(),
+	  ms: date.getMilliseconds()
+	};
+
+	Object.keys(time).map(function(moment, index) {
+		if (moment == 'ms') {
+			if (time[moment] < 10) {
+				time[moment] = time[moment]+'00';
+			} else if (time[moment] < 100) {
+				time[moment] = time[moment]+'0';
+			}
+		} else if (time[moment] < 10) {
+			time[moment] = '0' + time[moment];
+		}
+	});
+
+	var str = y + '/' + mo + '/' + d + ' ' + time.h + ':' + time.mi + ':' + time.s + '.' + time.ms;
+	if (TS_last_log_date) {
+		var diff = date-TS_last_log_date;
+		//str+= ' ('+diff+'ms)';
+	}
+	TS_last_log_date = date;
+	return str+' ';
+}
+
+var parseDeepLinkRequest = function(code) {
+	var m = code.match(/"id":"([CDG][A-Z0-9]{8})"/);
+	var id = m ? m[1] : null;
+
+	m = code.match(/"team":"(T[A-Z0-9]{8})"/);
+	var team = m ? m[1] : null;
+
+	m = code.match(/"message":"([0-9]+\.[0-9]+)"/);
+	var message = m ? m[1] : null;
+
+	return { id: id, team: team, message: message };
+}
+
+if ('rendererEvalAsync' in window) {
+	var origRendererEvalAsync = window.rendererEvalAsync;
+	window.rendererEvalAsync = function(blob) {
+		try {
+			var data = JSON.parse(decodeURIComponent(atob(blob)));
+			if (data.code.match(/handleDeepLink/)) {
+				var request = parseDeepLinkRequest(data.code);
+				if (!request.id || !request.team || !request.message) return;
+
+				request.cmd = 'channel';
+				TSSSB.handleDeepLinkWithArgs(JSON.stringify(request));
+				return;
+			} else {
+				origRendererEvalAsync(blob);
+			}
+		} catch (e) {
+		}
+	}
+}</script><script type="text/javascript">var TSSSB = {
+	call: function() {
+		return false;
+	}
+};</script><script type="text/javascript">window.addEventListener('load', function() {
+	var was_TS = window.TS;
+	delete window.TS;
+	if (was_TS) window.TS = was_TS;
+});</script><title>Backend Task | Slack</title><link href="Backend%20Task%20|%20Slack_files/rollup-slack_kit_legacy_adapters.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/rollup-plastic.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/files.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/public_file.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/print.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/rocket.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/spaces.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/modern.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/application.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/rollup-slack_kit_helpers.css" rel="stylesheet" id="slack_kit_helpers_stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><link href="Backend%20Task%20|%20Slack_files/lato-2-compressed.css" rel="stylesheet" type="text/css" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"><meta property="og:type" content="website"><meta property="og:image" content="https://a.slack-edge.com/9d670/img/slack_hash_128.png"><meta property="og:image:width" content="128"><meta property="og:image:height" content="128"><meta property="og:title" content="Backend Task"><meta property="og:site_name" content="Slack"><meta property="og:description" content="Public file shared from https://slack.com/"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://a.slack-edge.com/9d670/img/slack_hash_twitter.png"><meta name="twitter:image:width" content="128"><meta name="twitter:image:height" content="128"><meta name="twitter:site" content="@slackhq"><meta name="twitter:title" content="Backend Task"><meta name="twitter:description" content="Public file shared from https://slack.com/"><link id="favicon" rel="shortcut icon" href="https://a.slack-edge.com/4a5c4/marketing/img/meta/favicon-32.png" sizes="16x16 32x32 48x48" type="image/png"></head><body class="post"><script>var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+if (w > 1440) document.querySelector('body').classList.add('widescreen');</script><ts-space class="file_container post_container"><h1 class="file_title post_title">Backend Task</h1><div class="divider"></div><ts-rocket class="fake_rocket file_body post_body"><div><p>There is a simplified unix type shell with the following features:</p><p></p><h3>Commands</h3><p><code>touch</code></p><p>This command takes a single argument which is a file path, and creates that file if it does not exist, otherwise does nothing.</p><p>Example</p><pre>touch file1</pre><p>will create a file called <code>file1</code></p><pre>touch dir/file1</pre><p>will create a file called <code>file1</code> inside the directory <code>dir</code></p><p></p><p><code>mkdir</code></p><p>This
+ command takes a single argument, which is a path for a directory, and 
+will create the directory at the path if the parent directory exists, 
+otherwise it will print <code>parent directory does not exist</code>.</p><p>Example:</p><pre>mkdir dir</pre><p>will create a directory <code>dir</code> in the current working directory.</p><pre>mkdir noexist/dir</pre><p>will print <code>parent directory does not exist</code> if the directory <code>noexist</code> does not exist in the current working directory.</p><p></p><p><code>cd</code></p><p>This
+ command will change the current working directory. It will take a 
+single argument which will be the path for the directory to switch to. 
+It will print <code>directory does not exist</code> if a directory at the path does not exist.</p><p>Example:</p><pre>cd dir</pre><p>will change the current working directory to <code>dir</code> if it exists.</p><pre>cd noexists</pre><p>will print <code>directory does not exist</code> if the directory <code>noexists</code> does not exist in the current working directory.</p><p></p><p><code>pwd</code></p><p>This
+ command will print the name of the current working directory. It takes 
+no arguments. At the root directory, it will print nothing.</p><p></p><p><code>rm</code></p><p>This
+ command will take one argument, which will be a path to a file or 
+directory which needs to be removed, and it will remove that file, or 
+the directory and all the files within it. If a file or directory does 
+not exist at the given path, it will print <code>file or directory does not exist</code>.</p><p></p><p><code>ls</code></p><p>Prints
+ a list of all files and directories in the current working directory. 
+Directories are printed inside single quotes. For example, if the 
+current directory has a file <code>file1</code> and a directory <code>dir</code>, this command will print</p><pre>file1
+'dir'</pre><p></p><p><code>echo</code></p><p>This command will have any number of arguments. Anything that follows it will be printed to the screen.</p><p></p><p><code>cat</code></p><p>This
+ command will have any number of arguments, which will be paths to 
+files, and it will concatenate the contents of those files and print 
+them to the screen. If any file does not exist, it will print <code>file does not exist</code> instead.</p><p>Example:</p><p>Consider there is a file called <code>file1</code> with contents <code>hello</code> and a file <code>file2</code> with contents <code>world</code> in the current working directory</p><pre>cat file1 file2</pre><p>will print <code>helloworld</code> to the screen.</p><pre>cat file1 noexist</pre><p>will print <code>file does not exist</code> to the screen.</p><p></p><p><code>upper</code></p><p>This
+ command takes one argument, which is a file path, and prints the 
+contents of the file in uppercase. If the file does not exist, it will 
+print <code>file does not exist</code> to the screen.</p><p>Example:</p><p>Consider there is a file <code>file1</code> with the contents <code>hello world</code> in the current working directory.</p><pre>upper file1</pre><p>will print <code>HELLO WORLD</code> to the screen.</p><pre>upper noexist</pre><p>will print <code>file does not exist</code> to the screen.</p><p></p><p><code>lower</code></p><p>This command is similar to the <code>upper</code> command, but it will output lowercase instead of uppercase.</p><p></p><h3>Input and Output Streams</h3><p>Unix treats the screen and the keyboard as files, called <code>stdout</code> and <code>stdin</code> respectively. These special files can also be redirected to other files.</p><p></p><p>The <code>&gt;</code> operator will redirect <code>stdout</code>
+ to the file at the path that is after this operator. If the file does 
+not exist, the file will be created. However, if the parent directory 
+does not exist, <code>parent directory does not exist</code> will be printed instead.</p><p>For example:</p><p><code>echo hello &gt; file1</code></p><p>will create a file called <code>file1</code> in the current working directory with the contents <code>hello</code>.</p><pre>echo hello &gt; file1 &gt; file2</pre><p>will create two files, <code>file1</code> and <code>file2</code> in the current working directory, both with the contents <code>hello</code>.</p><p></p><p>The <code>&lt;</code> operator will get contents from the file at the path that is after this operator, and put them in <code>stdin</code>. If a file does not exist at the specified path, <code>file does not exist</code> will be printed instead. This is the only way to get something inside <code>stdin</code> in our example, as we are not using the keyboard. All the commands which have at least one argument can read from <code>stdin</code> as well. If a command is given arguments in addition to <code>stdin</code>, then <code>stdin</code> is completely ignored, otherwise it is considered to be the first argument of the command (<code>cat</code> command will get <code>stdin</code> as first argument, other commands will get the contents of <code>stdin</code> as first argument). If this operator is used more than once, the contents of all the files are concatenated into <code>stdin</code>.</p><p>Example:</p><p>Consider there is a file called <code>file1</code> in the current working directory with the contents <code>hello world</code>.</p><pre>cat &lt; file1</pre><p>will print <code>hello world</code> to the screen.</p><pre>echo &lt; file1</pre><p>will print <code>hello world</code> to the screen.</p><pre>rm &lt; file1</pre><p>will remove the file or directory named <code>hello world</code> if it exists in the current working directory.</p><pre>upper &lt; file1 &lt; file1</pre><p>will print <code>HELLO WORLDHELLO WORLD</code> to the screen.</p><p></p><p><code>stdout</code> for one command can also be piped as stdin to another command with the <code>|</code> operator.</p><p>Example:</p><pre>echo hello | cat</pre><p>will print <code>hello</code> to the screen.</p><pre>echo file1 | rm</pre><p>will remove a file called <code>file1</code> from the current working directory if it exists.</p><p>If there is a file <code>file1</code> with the contents <code>hello</code> and a file <code>file2</code> with the contents <code>world</code></p><pre>cat file1 file2 | upper &gt; file3</pre><p>will create a file <code>file3</code> in the current working directory with the contents <code>HELLOWORLD</code>.</p><p></p><h3>Directory Structure</h3><p>Initially,
+ execution will start at the root directory which will have no name. All
+ paths are relative to the current working directory and there are no 
+absolute paths. A <code>.</code> is treated as the current directory, while a <code>..</code> is treated as the parent to the current directory in the path. If the parent directory does not exist, for example, using <code>cd ..</code> when already at the root directory, nothing will happen. Therefore, if called from the root directory, <code>mkdir a/../../b</code> will create a directory <code>b</code> in the root directory, if directory <code>a</code> exists. Paths are separated by a <code>/</code>.</p><p></p><h2>Task</h2><p>Your
+ task is to write a program, which will read a set of commands entered 
+in the shell, and print whatever will be printed by the shell. Your 
+program should read from <code>stdin</code> and write to <code>stdout</code>.</p><p></p><h3>Example Input</h3><pre>mkdir dir
+cd dir2
+cd dir
+pwd
+mkdir indir
+cd indir
+pwd
+touch file
+cat file
+cat file2
+echo hello &gt; file1
+echo world &gt; file2
+cat file1 file2
+upper file2
+upper file1 | lower
+cat &lt; file1 | upper
+cd ..
+touch file3
+ls
+cd ../..
+cd ..
+ls
+rm dir2
+ls
+rm dir
+ls
+cd dir</pre><h3>Example Output</h3><pre>directory does not exist
+dir
+dir/indir
+file does not exist
+helloworld
+WORLD
+hello
+HELLO
+file3
+'indir'
+'dir'
+file or directory does not exist
+'dir'
+directory does not exist</pre><p></p></div></ts-rocket></ts-space><div id="footer"><div id="title"><strong>Backend Task</strong></div><div id="brand"><span id="brand_label">Public file shared from <a href="https://slack.com/" id="logo"></a></span></div></div><script type="text/javascript">
+/**
+ * A placeholder function that the build script uses to
+ * replace file paths with their CDN versions.
+ *
+ * @param {String} file_path - File path
+ * @returns {String}
+ */
+function vvv(file_path) {
+		 var vvv_warning = 'You cannot use vvv on dynamic values. Please make sure you only pass in static file paths.'; if (TS && TS.warn) { TS.warn(vvv_warning); } else { console.warn(vvv_warning); } 
+	return file_path;
+}
+
+var cdn_url = "https:\/\/a.slack-edge.com";
+var vvv_abs_url = "https:\/\/slack.com\/";
+var inc_js_setup_data = {
+	emoji_sheets: {
+		apple: 'https://a.slack-edge.com/c00d19/img/emoji_2017_12_06/sheet_apple_64_indexed_256.png',
+		google: 'https://a.slack-edge.com/c00d19/img/emoji_2017_12_06/sheet_google_64_indexed_256.png',
+	},
+};
+</script><script type="text/javascript" src="Backend%20Task%20|%20Slack_files/jquery.js" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"></script><script type="text/javascript" src="Backend%20Task%20|%20Slack_files/public_file.js" onload="window._cdn ? _cdn.ok(this, arguments) : null" onerror="window._cdn ? _cdn.failed(this, arguments) : null" crossorigin="anonymous"></script></body></html>
